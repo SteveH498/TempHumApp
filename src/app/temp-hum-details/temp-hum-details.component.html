@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Temperature Humidity App</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card style="margin: 2em;">
+  <mat-card-content>Time</mat-card-content>
+  <mat-card-title>{{ latestReading.timestamp | date:'medium' }}</mat-card-title>
+</mat-card>
+
+<mat-card style="margin: 2em;">
+  <mat-card-content>Temperature</mat-card-content>
+  <mat-card-title> {{ latestReading.temperature }} &deg; C</mat-card-title>
+</mat-card>
+
+<mat-card style="margin: 2em;">
+  <mat-card-content>Humidity</mat-card-content>
+  <mat-card-title>{{ latestReading.humidity }} &#x00025;</mat-card-title>
+</mat-card>
