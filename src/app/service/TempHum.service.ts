@@ -12,7 +12,8 @@ import { map } from 'rxjs/operators';
 export class TempHumService {
 
   tempHumService = "/api/readings/today";
-
+  //tempHumService="http://192.168.178.40:5000/readings/today"
+    
   constructor(private http: HttpClient) {}
 
   getTodaysTempHumReadings(): Observable<Reading[]>{
@@ -21,7 +22,7 @@ export class TempHumService {
       <Reading>{ 
         temperature: item[1],
         humidity: item[2],
-        timestamp: new Date(`${item[3]} GMT`)
+        timestamp: new Date(`${item[3].replace(" ","T")}.000+00:00`)
       } ))
     );
   }
