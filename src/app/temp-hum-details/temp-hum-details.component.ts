@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TempHumService } from '../service/TempHum.service';
 
 import { Reading } from '../service/Reading'
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'temp-hum-details',
@@ -20,14 +21,16 @@ export class TempHumDetailsComponent implements OnInit {
   constructor(private tempHumService: TempHumService) { }
 
   ngOnInit() {
-    this.getReadings();
+    this.getReadings(); // Initialize
+    const timer = interval(10000); // Query every 10 seconds
+    timer.subscribe(() =>this.getReadings());
   }
 
 
   getReadings(): void {
     this.tempHumService
       .getTodaysTempHumReadings()
-      .subscribe(readings => this.latestReading = readings[readings.length - 1]);
+      .subscribe(readings => this.latestReading = readings[readings.length - 1])    
   }
 
 }
